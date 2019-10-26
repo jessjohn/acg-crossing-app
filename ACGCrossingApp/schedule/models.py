@@ -10,4 +10,10 @@ class Location(models.Model):
     lon = models.FloatField()
     lat = models.FloatField()
 
-
+class Shift(models.Model):
+    """
+    Shifts Model
+    """
+    location = models.ForeignKey()
+    start_time = models.TimeField()
+    end_time = models.TimeField()
