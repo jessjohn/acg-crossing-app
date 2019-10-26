@@ -14,13 +14,9 @@ class Shift(models.Model):
     """
     Shifts Model
     """
-<<<<<<< HEAD
     location = models.ForeignKey(
         Location,
         on_delete=models.PROTECT
     )
-=======
-   # location = models.ForeignKey()
->>>>>>> fbb9da8f524a880d900cc20e27b13c36f4229389
     start_time = models.TimeField()
     end_time = models.TimeField()
