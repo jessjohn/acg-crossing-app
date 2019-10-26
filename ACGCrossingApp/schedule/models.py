@@ -14,6 +14,6 @@ class Shift(models.Model):
     """
     Shifts Model
     """
-    location = models.ForeignKey()
+   # location = models.ForeignKey()
     start_time = models.TimeField()
     end_time = models.TimeField()
