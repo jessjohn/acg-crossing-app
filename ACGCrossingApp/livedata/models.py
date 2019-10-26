@@ -8,8 +8,6 @@ class UserShift(models.Model):
         get_user_model(),
     )
     checked_in = models.BooleanField()
-    
-    def __str__(self):
-        return self
+    date = models.DateField()
 
     
