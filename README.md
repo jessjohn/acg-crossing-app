@@ -38,3 +38,9 @@ python manage.py createsuperuser
 ```
 
 To access the admin page via `http://localhost:8000/admin/` assuming you're running on localhost and haven't changed the configured port.
+
+# API DOCS
+`/api/v1/users` 
+GET - list the users resgistered
+
+`/api/v1/rest-auth/login
