@@ -12,6 +12,7 @@ Make sure to install pip *after* you install python3
 
 ```bash
 cd /<path-to-code>/acg-crossing-app/ACGCrossingApp/
+pipenv install
 pipenv shell
 python manage.py runserver
 ```
