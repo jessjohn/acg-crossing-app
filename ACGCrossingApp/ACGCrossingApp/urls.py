@@ -20,6 +20,10 @@ from django.contrib import admin
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('src.urls')),
+<<<<<<< HEAD
     path('api/v1/', include('users.urls')),
+=======
+    path('locations/', include('schedule.urls')),
+>>>>>>> fb598f7505127664e3d8327ae68c9d6318624193
 
 ]
