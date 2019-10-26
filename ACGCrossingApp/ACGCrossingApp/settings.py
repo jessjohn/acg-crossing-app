@@ -146,7 +146,6 @@ CHANNEL_LAYERS = {
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
-<<<<<<< HEAD
 AUTH_USER_MODEL = 'users.CustomUser'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -163,11 +162,10 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     )
 }
-=======
+
 # Celery application definition
 CELERY_BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
->>>>>>> cd11d3b2d9a36ea15b8c395128ced9c57e3f8a50
