@@ -7,7 +7,7 @@ from .serializers import LocationSerializer
 @csrf_exempt
 def locations_list(request):
     """
-    List all location
+    List all locations
     """
     if request.method == 'GET':
         snippets = Location.objects.all()

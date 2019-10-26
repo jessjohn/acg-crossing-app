@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
     'livedata.apps.LivedataConfig',
-    'location.apps.LocationsConfig',
+    'schedule.apps.LocationsConfig',
 ]
 
 MIDDLEWARE = [

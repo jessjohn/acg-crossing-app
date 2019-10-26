@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class LocationsConfig(AppConfig):
-    name = 'location'
+    name = 'schedule'

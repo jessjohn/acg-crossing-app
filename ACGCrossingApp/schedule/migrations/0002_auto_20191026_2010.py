@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('location', '0001_initial'),
+        ('schedule', '0001_initial'),
     ]
 
     operations = [
