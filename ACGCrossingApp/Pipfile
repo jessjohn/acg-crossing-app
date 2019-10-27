@@ -14,6 +14,7 @@ channels-redis = "*"
 django-rest-auth = "~=0.9.5"
 django-allauth = "~=0.40.0"
 celery ="~=4.3.0"
+apscheduler = "*"
 
 [requires]
 python_version = "3.7"
