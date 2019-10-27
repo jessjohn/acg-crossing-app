@@ -15,4 +15,4 @@ class LiveDataConsumer(WebsocketConsumer):
         # self.send(text_data=json.dumps({
         #     'message': message
         # }))
-        self.send(text_data + ' hussein it works')
+        self.send(text_data)
