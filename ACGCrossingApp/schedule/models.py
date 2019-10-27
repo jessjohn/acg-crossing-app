@@ -6,7 +6,7 @@ class Location(models.Model):
     Location model
     """
     address = models.CharField(max_length=256, blank=True, default='')
-    zone = models.IntegerField
+    zone = models.IntegerField(default=-1)
     lon = models.FloatField()
     lat = models.FloatField()
 

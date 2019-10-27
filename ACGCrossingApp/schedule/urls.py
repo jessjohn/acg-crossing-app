@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import locations_list
+from .views import locations, shifts
 
 urlpatterns = [
-    path('', locations_list),
+    path('locations', locations),
+    path('shifts', shifts)
 ]

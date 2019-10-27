@@ -5,6 +5,15 @@ from schedule.models import Shift
 
 class UserShift(models.Model):
 
+    CHECKED_IN = 'CI'
+    DECLINED = 'DE'
+    AWAITING_RESPONSE = 'AR'
+    SHIFT_STATUS = [
+        (CHECKED_IN, 'Checked In'),
+        (DECLINED, 'Declined'),
+        (AWAITING_RESPONSE, 'Awaiting Response'),
+    ]
+
     shift = models.ForeignKey(
         Shift,
         on_delete=models.PROTECT
@@ -15,7 +24,11 @@ class UserShift(models.Model):
         on_delete=models.PROTECT,
     )
     
-    checked_in = models.BooleanField()
+    checked_in = models.CharField(
+        max_length=2,
+        choices=SHIFT_STATUS,
+        default=AWAITING_RESPONSE,
+    )
 
     date = models.DateField()
 
