@@ -40,8 +40,9 @@ def check_in(request):
     """
     - Make a post request with the user id, lat/lon and a yes or no answer
     - check the time of the request and match the user to their expected userShift
-    - is that user where they are supposed to be?
-    - is it no more than 10 minutes before?
+    - now that you have a list of shifts they COULD be doing, does the lat/long match any of them?
+    - accept the check in at any that match, reject all others
+    - is it no more than 10 minutes before? reject if not
     - update everything if conditions are met   
     """
     pass
