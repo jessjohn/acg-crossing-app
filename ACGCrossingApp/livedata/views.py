@@ -2,11 +2,13 @@ from django.http import HttpResponse, JsonResponse
 from rest_framework.response import Response
 from django.views.decorators.csrf import csrf_exempt
 from .models import UserShift
-from .serializers import UserShiftWriteSerializer, UserShiftReadSerializer
+from .serializers import UserShiftWriteSerializer, UserShiftReadSerializer, CheckInSerializer
 from rest_framework import authentication, permissions, status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import authentication_classes, permission_classes, api_view
+import json
+from users.models import CustomUser
 
 # Create your views here.
 @csrf_exempt
@@ -33,7 +35,7 @@ def user_shifts(request):
 
 
 @csrf_exempt
-@api_view(['POST'])
+@api_view(['PUT'])
 @authentication_classes([TokenAuthentication])
 # @permission_classes([IsAuthenticated])
 def check_in(request):
@@ -45,4 +47,10 @@ def check_in(request):
     - is it no more than 10 minutes before? reject if not
     - update everything if conditions are met   
     """
-    pass
+    serializer = CheckInSerializer(data=request.data)
+    data = json.loads(request.data)
+    uname = data(["user_id"])
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_OK)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

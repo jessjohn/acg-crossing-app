@@ -152,7 +152,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SITE_ID = 1
 
-# ALLOWED_HOSTS = ['e7ce04e6.ngrok.io', 'localhost']
+ALLOWED_HOSTS = ['d752f7dc.ngrok.io', 'localhost']
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (

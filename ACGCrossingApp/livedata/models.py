@@ -31,5 +31,3 @@ class UserShift(models.Model):
     )
 
     date = models.DateField()
-
-    
