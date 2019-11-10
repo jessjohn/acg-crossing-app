@@ -10,10 +10,10 @@ django = "~=2.2.6"
 channels = "~=2.3.0"
 djangorestframework = "~=3.9.2"
 psycopg2 = "~=2.8.4"
-channels-redis = "*"
+channels-redis = "~=2.4.1"
 django-rest-auth = "~=0.9.5"
 django-allauth = "~=0.40.0"
-celery ="~=4.3.0"
+apscheduler = "~=3.6.1"
 
 [requires]
 python_version = "3.7"

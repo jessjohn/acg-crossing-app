@@ -7,7 +7,8 @@ class UserShift(models.Model):
 
     CHECKED_IN = 'CI'
     DECLINED = 'DE'
-    AWAITING_RESPONSE = 'AR'
+    AWAITING_RESPONSE = 'AR' #maybe rename to standby
+    #'ABSENT' STATE? We'll track state server side, too hard to compose custom json return objects
     SHIFT_STATUS = [
         (CHECKED_IN, 'Checked In'),
         (DECLINED, 'Declined'),
