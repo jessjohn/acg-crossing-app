@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# This is where we keep important things for versioning for better collaboration
+export COMMIT_HASH="$(git rev-parse --short HEAD)"
+export BRANCH_NAME="$(git rev-parse --abbrev-ref HEAD)"

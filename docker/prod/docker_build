@@ -1,0 +1,10 @@
+#!/bin/bash
+
+source "$(git rev-parse --show-toplevelgit rev-parse --show-toplevel)/version"
+
+docker build \
+    --build-arg COMMIT_HASH=${COMMIT_HASH} \
+    --build-arg BRANCH_NAME=${BRANCH_NAME} \
+    -t crosswatch-api:latest \
+    -t crosswatch-api:${COMMIT_HASH} \
+    .

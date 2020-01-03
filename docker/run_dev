@@ -1,0 +1,7 @@
+#!/bin/bash
+
+APP="$(git rev-parse --show-toplevel)/ACGCrossingApp"
+
+docker run \
+    --mount type=bind,source=${APP},target=/live-app \
+    crosswatch-dev:latest manage "${@}"
