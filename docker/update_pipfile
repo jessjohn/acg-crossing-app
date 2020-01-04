@@ -2,11 +2,16 @@
 set -ex
 
 # Build the image with new dependencies installed and new lockfile generated
-pushd "$(git rev-parse --show-toplevel)/docker/dev/environment/" 
+pushd "$(git rev-parse --show-toplevel)/docker/dev/environment/"
     sh docker_build
 popd
 
+# build the runtime stuff too, since we need to update it when we build the env anyway
+pushd "$(git rev-parse --show-toplevel)/docker/dev/runtime/"
+    sh docker_build
+popd
 
+# The location of the django app folder we want to bind to the running container
 APP="$(git rev-parse --show-toplevel)/ACGCrossingApp"
 
 # Run a container from the image and update the lockfile in our local git project

@@ -1,6 +1,7 @@
 version: "3.7"
 services:
-  mydb:
+  # database backend for the web app
+  postgres:
     image: postgres
     environment:
         POSTGRES_PASSWORD: crosswatch
@@ -10,6 +11,12 @@ services:
     - db-data:/var/lib/postgresql/data
     ports:
     - 5432:5432
+  
+  # key value store for pub/sub when pushing to the map UI
+  redis:
+    image: "redis:alpine"
+    ports:
+      - 6379:6379
 
 volumes:
   db-data:
