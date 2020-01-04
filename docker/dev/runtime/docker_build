@@ -1,0 +1,14 @@
+#!/bin/bash
+set -e
+
+# export branch name and commit hash
+source "$(git rev-parse --show-toplevel)/version"
+
+docker build \
+    --build-arg COMMIT_HASH=${COMMIT_HASH} \
+    --build-arg BRANCH_NAME=${BRANCH_NAME} \
+    -t crosswatch-dev:latest \
+    --rm \
+    -t crosswatch-dev:${COMMIT_HASH} \
+    --rm \
+    .

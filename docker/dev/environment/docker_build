@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+function cleanup() {
+    rm -rf ACGCrossingApp/
+}
+
+# export branch name and commit hash
+source "$(git rev-parse --show-toplevel)/version"
+
+# bring app into build dir to add to image
+cp -r "$(git rev-parse --show-toplevel)/ACGCrossingApp" .
+
+docker build \
+    --build-arg COMMIT_HASH=${COMMIT_HASH} \
+    --build-arg BRANCH_NAME=${BRANCH_NAME} \
+    -t crosswatch-dev-environment:latest \
+    --rm \
+    -t crosswatch-dev-environment:${COMMIT_HASH} \
+    --rm \
+    .
+
+trap cleanup EXIT

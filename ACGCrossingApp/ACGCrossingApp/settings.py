@@ -89,8 +89,8 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'crosswatch'),
         'USER': os.environ.get('DB_USER', 'crosswatch'),
         'PASSWORD': os.environ.get('DB_PASSWD', 'crosswatch'),
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'HOST': os.environ.get('DB_HOST', 'host.docker.internal'),
+        'PORT': os.environ.get('DB_PORT', '5432')
     }
 }
 

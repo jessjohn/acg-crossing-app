@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  mydb:
+    image: postgres
+    environment:
+        POSTGRES_PASSWORD: crosswatch
+        POSTGRES_USER: crosswatch
+        POSTGRES_DB: crosswatch
+    volumes:
+    - db-data:/var/lib/postgresql/data
+    ports:
+    - 5432:5432
+
+volumes:
+  db-data:
+    driver: local
