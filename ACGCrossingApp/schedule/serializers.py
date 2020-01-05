@@ -50,6 +50,7 @@ class ShiftWriteSerializer(serializers.Serializer):
 
 
     def create(self, validated_data):
+        # TODO: start time should be after end time.
         """
         Create a new serialized shift given validated data
         """
