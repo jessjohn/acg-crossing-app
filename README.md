@@ -87,11 +87,43 @@ SUBSCRIBE [channel]
 ```
 
 ---
+### Setting up the superuser
+When you run the app for the first time, you'll need to set up the superuser for the browsable API.
+
+Run the following:
+```bash
+sh manage createsuperuser
+```
+
+Sample output:
+```
+Username: admin
+Email address:
+Password:
+Password (again):
+The password is too similar to the username.
+This password is too short. It must contain at least 8 characters.
+This password is too common.
+Bypass password validation and create user anyway? [y/N]: y
+Superuser created successfully.
+```
+
+Then you can start the server back up with
+```
+sh manage runserver 0.0.0.0:8000
+```
+
+---
 ### Running the app
-Once postgres is up, you can run `sh run_dev runserver` to start the app.
+Once postgres is up, you can run 
+```
+sh manage runserver 0.0.0.0:8000
+``` 
+to start the app.
+(It will bind to localhost by default, which would make it impossible to reach outside of the container.)
 
 This will be the code from your git repo mounted in the container, so it will be able to live-reload.
 
 To exit, just ue Ctrl+C and the container will shut itself down.
 
-> Note: Any command you pass to `manage.py` can be passed to the run_dev script and it will pass it to the container an execute it.
+> Note: Any command you pass to `manage.py` can be passed to the `manage` script and it will pass it to the container an execute it.
