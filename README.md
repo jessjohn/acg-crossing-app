@@ -52,7 +52,6 @@ This will:
 4. Update the lockfile in your local git repo using docker volumes
 
 ## Running the app
----
 ### Set up Postgres
 Now that you've built the images as described above, we will need a postgres instance for local development.
 
