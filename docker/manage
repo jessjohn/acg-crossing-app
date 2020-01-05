@@ -3,5 +3,7 @@
 APP="$(git rev-parse --show-toplevel)/ACGCrossingApp"
 
 docker run \
+    -it \
+    -p 8000:8000 \
     --mount type=bind,source=${APP},target=/live-app \
     crosswatch-dev:latest manage "${@}"
