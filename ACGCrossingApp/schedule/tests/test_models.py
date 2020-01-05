@@ -28,7 +28,10 @@ class LocationTest(TestCase):
             address="Bagend, Bagshot Row"
         )
 
-        print()
+        # TODO: Put some real assertions and test cases in here
+        self.assertTrue(
+            location_fake_lane.lat_plus > location_fake_lane.lat
+        )
 
 
 class ShiftTest(TestCase):
@@ -44,7 +47,18 @@ class ShiftTest(TestCase):
 
         # Make a shift template for the location
         Shift.objects.create(
-            location=loc.id,
+            location=loc,
             start_time=datetime.time(17,0,0),
             end_time=datetime.time(18,0,0)
         )
+
+    def test_shifts(self):
+        location_fake_lane = Location.objects.get(
+            address="3 Fake Lane, Ottawa ON"
+        )
+
+        shift_fake_lane = Shift.objects.get(
+            location=location_fake_lane
+        )
+
+        # TODO: Put some real assertions and test cases in here...

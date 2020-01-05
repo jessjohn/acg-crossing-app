@@ -127,3 +127,25 @@ This will be the code from your git repo mounted in the container, so it will be
 To exit, just ue Ctrl+C and the container will shut itself down.
 
 > Note: Any command you pass to `manage.py` can be passed to the `manage` script and it will pass it to the container an execute it.
+
+---
+### Running Unit Tests
+I've mostly been doing TDD for this app since it lends itself really nicely to it.
+
+You can run unit tests for a module in a docker container using the `manage` script.
+
+```bash
+# sh manage test [module], e.g.
+sh manage test schedule
+sh manage test livedata
+```
+
+You can get more specific as well as we build out more tests.
+
+```bash
+# Run both test suites for Locations and Shifts defined in the test_models.py file
+sh manage test schedule.tests.test_models
+
+# Only run the test_shifts test in the ShiftTest suite in the test_models.py
+sh manage test schedule.tests.test_models.ShiftTest.test_shifts
+```
