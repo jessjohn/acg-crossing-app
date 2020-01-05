@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 # Build the image with new dependencies installed and new lockfile generated
 pushd "$(git rev-parse --show-toplevel)/docker/dev/environment/"

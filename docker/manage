@@ -1,7 +1,9 @@
 #!/bin/bash
 
 APP="$(git rev-parse --show-toplevel)/ACGCrossingApp"
+echo "${APP} will be mounted to /live-app directory"
 
+echo "Running ${APP}"
 docker run \
     -it \
     -p 8000:8000 \
