@@ -1,12 +1,16 @@
 from django.db import models
 from math import cos, pi
 
-
+# Constants
+# ----------
 # radius of earth approx
 R = 6378137
 # offset in metres
 dg = 50
 
+
+# Functions
+# ----------
 # add 50 m to the lat/lon values
 def add_geo(lat, lon):
     d_lat = dg/R
@@ -19,6 +23,8 @@ def sub_geo(lat, lon):
     d_lon = (R*cos(pi*lat/180))
     return (lat - d_lat * 180/pi, lon - d_lon * 180/pi)
 
+# Model classes
+# ---------------
 class Location(models.Model):
     """
     Location model
@@ -27,6 +33,8 @@ class Location(models.Model):
     zone = models.IntegerField(default=-1)
     lon = models.FloatField()
     lat = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
     
     @property
     def lat_plus(self):
@@ -54,3 +62,5 @@ class Shift(models.Model):
     )
     start_time = models.TimeField()
     end_time = models.TimeField()
+    created_at = models.DateTimeField(auto_now_add=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, blank=True)
