@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3.3"
 services:
   # database backend for the web app
   postgres:
@@ -11,13 +11,25 @@ services:
     - db-data:/var/lib/postgresql/data
     ports:
     - 5432:5432
+    networks: 
+      - crosswatch-dev
   
   # key value store for pub/sub when pushing to the map UI
   redis:
     image: "redis:alpine"
+    volumes:
+      - 'redis-data:/data'
     ports:
       - 6379:6379
+    networks: 
+      - crosswatch-dev
 
 volumes:
   db-data:
     driver: local
+  redis-data:
+    driver: local
+
+networks:
+  crosswatch-dev:
+    driver: bridge

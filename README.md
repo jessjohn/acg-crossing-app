@@ -5,12 +5,6 @@ The REST API for the ACG Crossing Guard App (RHoK #11).
 2. That will trigger validation and updates to the crossing guard shifts in the database.
 3. Finally it will Publish the update to redis, where the live map can subscribe and consume this data to show who is able to make it or not.
 
-In the future, we should have a scheduled task for building a new set of shifts every day.
-
-**TODO**: Move over as much of the documentation as we can to Notion of Confluence or something.
-
-![Architecture Diagram](resources/arch-diagram.png)
-
 # Dev Dependencies (Docker)
 ## Dev Dependencies (Mac)
 * Docker for Mac
@@ -23,7 +17,8 @@ In the future, we should have a scheduled task for building a new set of shifts 
 * [Docker Compose](https://docs.docker.com/compose/install/)
 
 # Dev Workflow (Docker)
-## Building the images
+## Getting Started
+This will build the images and set everything up for you.
 Assuming you are in the project root directory:
 ```bash
 # Builds the environment image with all dependencies installed and also builds the dev runtime image for you
@@ -31,10 +26,40 @@ pushd docker && update_pipfile && popd
 ```
 **This is the only command you will need for setting up the images for dev work.**
 
-Here is a sketch of how the dockerized setup works
+## Gotchas (Linux)
+I discovered running on ubuntu 19.04:
+Docker will throw some permission denied errors if you dont have the right permissions for the docker user. 
+To rectify this and test it run the following:
 
-![Docker Design Sketch](resources/docker_sketch.png)
+```bash
+sudo groupadd docker
+sudo usermod -aG docker $USER
+docker run hello-world 
+```
 
+This should give you a hello world message from docker as follows:
+```
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+```
 ---
 
 ## Adding a new dependency for the django app
@@ -92,7 +117,7 @@ When you run the app for the first time, you'll need to set up the superuser for
 
 Run the following:
 ```bash
-sh manage createsuperuser
+bash manage createsuperuser
 ```
 
 Sample output:
@@ -110,14 +135,14 @@ Superuser created successfully.
 
 Then you can start the server back up with
 ```
-sh manage runserver 0.0.0.0:8000
+bash manage runserver 0.0.0.0:8000
 ```
 
 ---
 ### Running the app
 Once postgres is up, you can run 
 ```
-sh manage runserver 0.0.0.0:8000
+bash manage runserver 0.0.0.0:8000
 ``` 
 to start the app.
 (It will bind to localhost by default, which would make it impossible to reach outside of the container.)
@@ -136,16 +161,16 @@ You can run unit tests for a module in a docker container using the `manage` scr
 
 ```bash
 # sh manage test [module], e.g.
-sh manage test schedule
-sh manage test livedata
+bash manage test schedule
+bash manage test livedata
 ```
 
 You can get more specific as well as we build out more tests.
 
 ```bash
 # Run both test suites for Locations and Shifts defined in the test_models.py file
-sh manage test schedule.tests.test_models
+bash manage test schedule.tests.test_models
 
 # Only run the test_shifts test in the ShiftTest suite in the test_models.py
-sh manage test schedule.tests.test_models.ShiftTest.test_shifts
+bash manage test schedule.tests.test_models.ShiftTest.test_shifts
 ```

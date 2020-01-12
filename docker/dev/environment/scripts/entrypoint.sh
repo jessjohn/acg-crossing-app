@@ -15,6 +15,11 @@ case "${ARG}" in
         shift 1
         CMD=("/usr/local/bin/python" "/live-app/manage.py" "${@}")
         ;;
+    # For running test coverage
+    coverage)
+        echo "Python coverage command provided, passing args through to test coverage reporting..."
+        CMD=("/scripts/report_coverage.sh")
+        ;;
     # For passing through a command (will be run as executable)
     *)
         echo "Command provided is not defined in the entrypoint script. Proceeding in passthrough mode..."

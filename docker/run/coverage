@@ -7,5 +7,6 @@ echo "Running ${APP}"
 docker run \
     -it \
     -p 8000:8000 \
+    --network=docker_crosswatch-dev \
     --mount type=bind,source=${APP},target=/live-app \
-    crosswatch-dev:latest manage "${@}"
+    crosswatch-dev:latest coverage "${@}"

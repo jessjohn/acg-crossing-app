@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': os.environ.get('DB_NAME', 'crosswatch'),
         'USER': os.environ.get('DB_USER', 'crosswatch'),
         'PASSWORD': os.environ.get('DB_PASSWD', 'crosswatch'),
-        'HOST': os.environ.get('DB_HOST', 'host.docker.internal'),
+        'HOST': os.environ.get('DB_HOST', 'postgres'),
         'PORT': os.environ.get('DB_PORT', '5432')
     }
 }
@@ -139,7 +139,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [os.environ.get('REDIS_HOST', 'host.docker.internal'), os.environ.get('REDIS_PORT', 6379)],
+            "hosts": [os.environ.get('REDIS_HOST', 'redis'), os.environ.get('REDIS_PORT', 6379)],
 }
     }
 }
