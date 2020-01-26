@@ -26,7 +26,8 @@ pushd docker && update_pipfile && popd
 ```
 **This is the only command you will need for setting up the images for dev work.**
 
-## Gotchas (Linux)
+## Gotchas 
+### (Linux)
 I discovered running on ubuntu 19.04:
 Docker will throw some permission denied errors if you dont have the right permissions for the docker user. 
 To rectify this and test it run the following:
@@ -60,6 +61,27 @@ Share images, automate workflows, and more with a free Docker ID:
 For more examples and ideas, visit:
  https://docs.docker.com/get-started/
 ```
+---
+
+### (Windows)
+Similar thing for windows, permissions can be configured with these steps, courtesy of @abraaoz from https://github.com/docker/for-win/issues/3385.
+
+> 1. Stop your container.
+> 2. Open cmd with admin rights and enter the following commands:
+> 
+> ```shell
+> > net user /add DockerDiskSharing DockerDiskSharing
+> > net localgroup Administrators DockerDiskSharing /add
+> > net localgroup docker-users DockerDiskSharing /add
+> > icacls "%UserProfile%" /q /c /t /grant docker-users:F
+> ```
+> 
+> 1. At `Docker -> Settings -> Shared Drives` screen:
+> 
+> * click `Reset credentials`
+> * tick drive C
+> * click `Apply`
+> * type `DockerDiskSharing` in user name and `DockerDiskSharing` in password and click `OK`
 ---
 
 ## Adding a new dependency for the django app
