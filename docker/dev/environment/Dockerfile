@@ -14,7 +14,7 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /usr/
 
 RUN chmod +x /usr/bin/tini && \
     mkdir /app && \
-    pip install --user pipenv 
+    pip install --user pipenv
 
 ADD ACGCrossingApp/ /app/
 ADD scripts/ /scripts/
