@@ -9,6 +9,7 @@ ARG BRANCH_NAME
 ARG PROJ_ROOT
 
 RUN rm -rf /app
+WORKDIR /live-app
 ENTRYPOINT [ "/scripts/entrypoint.sh" ]
 
 LABEL "Commit Hash"="${COMMIT_HASH}"
