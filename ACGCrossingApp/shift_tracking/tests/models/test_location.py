@@ -1,5 +1,6 @@
 from django.test import TestCase
-from django.db.utils import IntegrityError, DataError
+from django.db.utils import DataError, IntegrityError
+from django.core.exceptions import ValidationError
 
 from ...models.location import Location
 
@@ -35,7 +36,7 @@ class LocationTest(TestCase):
     lat_too_low = -91
     lat_too_high = 91
     lon_too_low = -181
-    long_too_high = 181
+    lon_too_high = 181
 
     def test_happy_path(self):
         loc = Location.objects.create(
@@ -94,3 +95,121 @@ class LocationTest(TestCase):
                 description=self.acceptable_description,
                 location_number=self.acceptable_location_number
             )
+    
+    """
+    - zone field: Ensure that trying to create a location with a zone
+    thats too long throws a data error
+    """
+    def test_zone_too_long(self):
+        with self.assertRaises(DataError):
+            Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.char_field_over_255,
+                latitude=self.acceptable_latitude,
+                longitude=self.acceptable_longitude,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+
+    """
+    - latitude field: shouldn't be null
+    """
+    def test_latitude_required(self):
+        with self.assertRaises(IntegrityError):
+            Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.null_value,
+                longitude=self.acceptable_longitude,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+
+    """
+    - latitude field: shouldn't be below -90
+    """
+    def test_latitude_too_low(self):
+        with self.assertRaises(ValidationError):
+            loc = Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.lat_too_low,
+                longitude=self.acceptable_longitude,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+            loc.full_clean()
+
+    """
+    - latitude field: shouldn't be above 90
+    """
+    def test_latitude_too_high(self):
+        with self.assertRaises(ValidationError):
+            loc = Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.lat_too_high,
+                longitude=self.acceptable_longitude,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+            loc.full_clean()
+    
+    """
+    - longitude field: shouldn't be null
+    """
+    def test_longitude_required(self):
+        with self.assertRaises(IntegrityError):
+            Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.acceptable_latitude,
+                longitude=self.null_value,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+
+    """
+    - longitude field: shouldn't be below -180
+    """
+    def test_longitude_too_low(self):
+        with self.assertRaises(ValidationError):
+            loc = Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.acceptable_latitude,
+                longitude=self.lon_too_low,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+            loc.full_clean()
+
+    """
+    - longitude field: shouldn't be above 180
+    """
+    def test_longitude_too_high(self):
+        with self.assertRaises(ValidationError):
+            loc = Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.acceptable_latitude,
+                longitude=self.lon_too_low,
+                description=self.acceptable_description,
+                location_number=self.acceptable_location_number
+            )
+            loc.full_clean()
+    
+    """
+    - location_number field: should not be null
+    """
+    def test_loc_nmbr_required(self):
+        with self.assertRaises(IntegrityError):
+            Location.objects.create(
+                address=self.acceptable_address,
+                zone=self.acceptable_zone,
+                latitude=self.acceptable_latitude,
+                longitude=self.acceptable_longitude,
+                description=self.acceptable_description,
+                location_number=self.null_value
+            )
+    
