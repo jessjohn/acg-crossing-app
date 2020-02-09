@@ -1,0 +1,5 @@
+# Set the default behavior for all files.
+* text=auto
+
+# Convert to LF line endings on checkout, otherwise bash scripts won't run on windows
+*.sh text eol=lf

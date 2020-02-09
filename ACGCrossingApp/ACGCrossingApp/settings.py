@@ -30,7 +30,6 @@ DEBUG = True
 
 INSTALLED_APPS = [
     'channels',
-    'src',
     'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
@@ -45,8 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users.apps.UsersConfig',
-    'livedata.apps.LivedataConfig',
-    'schedule.apps.LocationsConfig',
 ]
 
 MIDDLEWARE = [

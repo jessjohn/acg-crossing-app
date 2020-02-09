@@ -19,8 +19,5 @@ from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('src.urls')),
     path('api/v1/', include('users.urls')),
-    path('api/v1/', include('schedule.urls')),
-    path('api/v1/', include('livedata.urls')),
 ]
