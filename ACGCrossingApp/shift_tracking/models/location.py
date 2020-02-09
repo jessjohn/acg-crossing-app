@@ -16,12 +16,12 @@ class Location(Model):
         max_length=255,
         unique=True
     )
+    
     """
     We don't have specifications on what OSC calls a zone,
     there appears to be some technicality to this, but we will
     keep this as a string until presented with adequeate motivation
-    to refactor this into it's own model.
-
+    to refactor this into its own model.
     Every data point has a zone at the moment, so we will require it.
     """
     zone = CharField(
@@ -40,7 +40,7 @@ class Location(Model):
         ],
         help_text="Latitude should be between -90 and 90 degrees."
     )
-    
+
     longitude = IntegerField(
         validators=[
             MaxValueValidator(180),
