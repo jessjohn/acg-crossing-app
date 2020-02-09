@@ -8,9 +8,11 @@ class Location(Model):
     e.g. 'Street1 & Street2'
     
     An address should be required.
+    An address should be unique.
     """
     address = CharField(
-        max_length=255
+        max_length=255,
+        unique=True
     )
     """
     We don't have specifications on what OSC calls a zone,
