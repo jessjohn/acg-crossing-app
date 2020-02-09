@@ -3,6 +3,8 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Location(Model):
     """
+    TODO t.m.dubiel@gmail.com Feb 9 2020 - find a way to provide validation at the db level
+
     In the data provided by OSC, we don't get concrete
     street adresses. They usually provide a brief string description,
     e.g. 'Street1 & Street2'
@@ -38,6 +40,7 @@ class Location(Model):
         ],
         help_text="Latitude should be between -90 and 90 degrees."
     )
+    
     longitude = IntegerField(
         validators=[
             MaxValueValidator(180),
@@ -60,6 +63,9 @@ class Location(Model):
     """
     location_number = IntegerField()
 
+    """
+    TODO: t.m.dubiel@gmail.com Feb 9 2020 - create a better string representation
+    """
     def __str__(self):
         return self.address
     
