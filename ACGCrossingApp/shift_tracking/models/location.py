@@ -1,10 +1,8 @@
-from django.db.models import Model, CharField, IntegerField, TextField
+from django.db.models import Model, CharField, FloatField, IntegerField, TextField
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Location(Model):
     """
-    TODO t.m.dubiel@gmail.com Feb 9 2020 - find a way to provide validation at the db level
-
     In the data provided by OSC, we don't get concrete
     street adresses. They usually provide a brief string description,
     e.g. 'Street1 & Street2'
@@ -29,11 +27,13 @@ class Location(Model):
     )
     
     """
+    Inetegers representing latitude and longitude in degrees.
+    
     We require a latitude and logitude for visual representation
     of locations in the map UI.
     These should be provided and required at the time of creation.
     """
-    latitude = IntegerField(
+    latitude = FloatField(
         validators=[
             MaxValueValidator(90),
             MinValueValidator(-90)
@@ -41,7 +41,7 @@ class Location(Model):
         help_text="Latitude should be between -90 and 90 degrees."
     )
 
-    longitude = IntegerField(
+    longitude = FloatField(
         validators=[
             MaxValueValidator(180),
             MinValueValidator(-180)

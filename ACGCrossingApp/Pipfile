@@ -15,6 +15,9 @@ django-rest-auth = "~=0.9.5"
 django-allauth = "~=0.40.0"
 apscheduler = "~=3.6.1"
 coverage = "~=5.0.3"
+faker = "~=4.0.1"
+factory_boy = "~=2.12.0"
+simplejson = "~=3.17.0"
 
 [requires]
 python_version = "3.7"
